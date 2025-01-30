@@ -1,0 +1,21 @@
+[METADATA]
+name = "Example"
+author = "Michael Smith"
+description = "Yet another example map."
+skybox = "sky_day"
+
+[ENTITIES]
+entity {
+    type = "player_spawn"
+    position = (0, 10, 0)
+    rotation = (0, 180, 0)
+}
+
+[BRUSHES]
+brush {
+    material = "__GREEN"
+    data = [
+        (-15, 0, -15), (15, 0, -15), (15, 0, 15), (-15, 90, -15)
+    ]
+}
+
