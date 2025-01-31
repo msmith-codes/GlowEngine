@@ -30,3 +30,6 @@ lib/
 
 # ImGui-specific ignores:
 imgui.ini
+
+# VSCode-specific ignores:
+.vscode/

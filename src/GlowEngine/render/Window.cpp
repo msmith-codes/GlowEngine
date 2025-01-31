@@ -20,6 +20,7 @@ namespace Glow
     void Window::compose()
     {
         Window& win = Window::getInstance();
+        SetConfigFlags(FLAG_WINDOW_RESIZABLE);
         InitWindow(win.width, win.height, win.title.c_str());
         win.hasWindow = true;
     }

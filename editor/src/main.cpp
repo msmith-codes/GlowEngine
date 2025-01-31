@@ -1,6 +1,14 @@
 #include <GlowEngine/render/Window.hpp>
 #include <GlowEngine/core/GlowApp.hpp>
 
+#include <editor/panels/MenuBar.hpp>
+#include <editor/panels/OpenProjectPopup.hpp>
+#include <editor/panels/ViewportPanel.hpp>
+#include <editor/panels/InspectorPanel.hpp>
+#include <editor/panels/HierarchyPanel.hpp>
+#include <editor/panels/ToolbarPanel.hpp>
+#include <editor/panels/FileExplorerPanel.hpp>
+
 #include <iostream>
 
 #include <raylib.h>
@@ -11,6 +19,12 @@
 
 class EditorApp: public Glow::GlowApp
 {
+    private:
+        bool shouldShowViewport;
+        RenderTexture viewportTexture;
+        Camera3D editorCamera;
+        int viewWidth;
+        int viewHeight;
     public: 
         EditorApp();
     protected:
@@ -24,6 +38,7 @@ EditorApp::EditorApp() : Glow::GlowApp(this)
 {
     Glow::Window::setSize(1280, 720);
     Glow::Window::setTitle("GlowEditor");
+    this->shouldShowViewport = true;
 }
 
 void EditorApp::onCompose()
@@ -32,13 +47,22 @@ void EditorApp::onCompose()
     rlImGuiSetup(true);
 
     ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+    this->viewportTexture = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
+
+    this->editorCamera.fovy = 45.0f;
+    this->editorCamera.up = { 0.0f, 1.0f, 0.0f };
+    this->editorCamera.position = { 15.0f, 15.0f, 15.0f };
+    this->editorCamera.target = { 0.0f, 0.0f, 0.0f };
+    this->editorCamera.projection = CAMERA_PERSPECTIVE;
 }
 
 void EditorApp::onUpdate(float dt)
 {
-    if(IsKeyPressed(KEY_SPACE)) {
-        std::cout << "EditorApp::onUpdate()" << std::endl;
-    }     
+    // UpdateCamera(&this->editorCamera, CAMERA_ORBITAL);
+
+    ViewportPanel::update(this->viewportTexture);
+    ViewportPanel::updateTexture(this->viewportTexture, this->editorCamera);
 }
 
 void EditorApp::onRender()
@@ -46,13 +70,21 @@ void EditorApp::onRender()
     DrawFPS(10, 10);
     rlImGuiBegin();
         ImGui::DockSpaceOverViewport(0,  NULL, ImGuiDockNodeFlags_PassthruCentralNode);
-        ImGui::ShowDemoWindow();
+
+        ViewportPanel::render(this->viewportTexture);
+        OpenProjectPopup::render();
+        MenuBar::render();
+        ToolbarPanel::render();
+        HierarchyPanel::render();
+        InspectorPanel::render();
+        FileExplorerPanel::render();        
+
     rlImGuiEnd();
 }
 
 void EditorApp::onDispose()
 {
-    std::cout << "EditorApp::onDispose()" << std::endl;
+    UnloadRenderTexture(this->viewportTexture);
 }
 
 int main(int argc, char* argv[])
