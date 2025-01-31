@@ -5,6 +5,8 @@
 void ToolbarPanel::render()
 {
     ImGui::Begin("Tool Bar");
-        ImGui::Text("TODO: Fill this in.");
+        if(ImGui::Button("Play")) {
+            // TODO: Open the game in a new window.
+        }
     ImGui::End();
 }

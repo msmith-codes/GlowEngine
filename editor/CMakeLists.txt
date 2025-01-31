@@ -22,7 +22,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE "include")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE GlowEngine)
+target_link_libraries(${PROJECT_NAME} PRIVATE GlowEngine toml11)
 
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} PUBLIC "-static-libgcc")

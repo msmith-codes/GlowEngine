@@ -1,0 +1,19 @@
+name = "level0"
+author = "Michael Smith"
+version = "1.0"
+
+dimensions = [128.0, 128.0, 64.0]
+
+[[brushes]]
+name = "Ground"
+material = "__GREEN"
+position = [0.0, 0.0, 0.0]
+size = [8.0, 0.5, 8.0]
+rotation = [0.0, 0.0, 0.0]
+
+[[brushes]]
+name = "Box"
+material = "__RED"
+position = [0.0, 1.0, 0.0]
+size = [1.0, 1.0, 1.0]
+rotation = [0.0, 0.0, 0.0]

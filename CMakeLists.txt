@@ -19,20 +19,28 @@ endif()
 
 include(FetchContent)
 
+message(STATUS "Fetching Raylib v5.5")
 FetchContent_Declare(
     raylib
     GIT_REPOSITORY "https://github.com/raysan5/raylib.git"
     GIT_TAG "5.5"
 )
 
-FetchContent_MakeAvailable(raylib)
+message(STATUS "Fetching Toml11 v4.3.0")
+FetchContent_Declare(
+    toml11
+    GIT_REPOSITORY "https://github.com/ToruNiina/toml11.git"
+    GIT_TAG "v4.3.0"
+)
+
+FetchContent_MakeAvailable(raylib toml11)
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "include")
 
-target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
+target_link_libraries(${PROJECT_NAME} PUBLIC raylib toml11)
 
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} PUBLIC "-static-libgcc")

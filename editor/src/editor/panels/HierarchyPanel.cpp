@@ -1,10 +1,24 @@
 #include <editor/panels/HierarchyPanel.hpp>
+#include <editor/panels/ViewportPanel.hpp>
+
+#include <GlowEngine/utils/MapLoader.hpp>
 
 #include <imgui.h>
+
+std::vector<Glow::Brush> HierarchyPanel::mapData = {};
 
 void HierarchyPanel::render()
 {
     ImGui::Begin("Hierarchy");
-        ImGui::Text("TODO: Fill this in.");
+        for(const auto& brush : HierarchyPanel::mapData) {
+            if(ImGui::Selectable(brush.name.c_str())) {
+                ViewportPanel::setSelectedBrush(const_cast<Glow::Brush*>(&brush));
+            }
+        }
     ImGui::End();
+}
+
+void HierarchyPanel::setMapData(const std::vector<Glow::Brush>& brushes)
+{
+    HierarchyPanel::mapData = brushes;
 }
