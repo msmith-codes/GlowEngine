@@ -35,6 +35,7 @@ void InspectorPanel::render()
             brush->rotation.x = roundf(brush->rotation.x);
             brush->rotation.y = roundf(brush->rotation.y);
             brush->rotation.z = roundf(brush->rotation.z);
+
         }
     ImGui::End();
 }

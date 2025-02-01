@@ -8,11 +8,11 @@
 class HierarchyPanel
 {
     public:
-        static std::vector<Glow::Brush> mapData;
+        static std::vector<Glow::Brush*> mapData;
     public:
         static void render();
     public:
-        static void setMapData(const std::vector<Glow::Brush>& brushes);
+        static void setMapData(const std::vector<Glow::Brush*>& brushes);
 };
 
 #endif

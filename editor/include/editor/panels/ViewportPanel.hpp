@@ -10,14 +10,14 @@ class ViewportPanel
 {
     private:
         static bool shouldRender;
-        static std::vector<Glow::Brush> mapData;
+        static std::vector<Glow::Brush*> mapData;
         static Glow::Brush* selectedBrush;
     public:
         static void compose();
         static void updateTexture(RenderTexture& viewportTexture, Camera3D& camera);
         static void update(RenderTexture& viewportTexture);
         static void render(RenderTexture& viewportTexture);
-        static void setMapData(const std::vector<Glow::Brush>& brushes);
+        static void setMapData(const std::vector<Glow::Brush*>& brushes);
         static Glow::Brush* getSelectedBrush();
         static void setSelectedBrush(Glow::Brush* brush);
 };

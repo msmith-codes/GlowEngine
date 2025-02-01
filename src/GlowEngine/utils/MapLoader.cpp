@@ -19,27 +19,27 @@ namespace Glow
             auto brushList = toml::find<std::vector<toml::table>>(data, "brushes");
 
             for(const auto& brush : brushList) {
-                Brush b;
-                b.name = brush.at("name").as_string();
+                Brush* b = new Brush;
+                b->name = brush.at("name").as_string();
                 
-                b.material = brush.at("material").as_string();
+                b->material = brush.at("material").as_string();
                 
                 auto pos = brush.at("position").as_array();
-                b.position = Vector3{ 
+                b->position = Vector3{ 
                     static_cast<float>(pos.at(0).as_floating()), 
                     static_cast<float>(pos.at(1).as_floating()), 
                     static_cast<float>(pos.at(2).as_floating()) 
                 };
 
                 auto size = brush.at("size").as_array();
-                b.size = Vector3{ 
+                b->size = Vector3{ 
                     static_cast<float>(size.at(0).as_floating()), 
                     static_cast<float>(size.at(1).as_floating()), 
                     static_cast<float>(size.at(2).as_floating()) 
                 };
 
                 auto rot = brush.at("rotation").as_array();
-                b.rotation = Vector3{ 
+                b->rotation = Vector3{ 
                     static_cast<float>(rot.at(0).as_floating()), 
                     static_cast<float>(rot.at(1).as_floating()), 
                     static_cast<float>(rot.at(2).as_floating()) 
@@ -52,7 +52,7 @@ namespace Glow
         }   
     }
 
-    std::vector<Brush> MapLoader::getBrushes() const
+    std::vector<Brush*> MapLoader::getBrushes() const
     {
         return this->brushes;
     }

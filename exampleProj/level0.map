@@ -17,3 +17,17 @@ material = "__RED"
 position = [0.0, 1.0, 0.0]
 size = [1.0, 1.0, 1.0]
 rotation = [0.0, 0.0, 0.0]
+
+[[brushes]]
+name = "NorthTower"
+material = "__GRAY"
+position = [5.0, 1.0, 5.0]
+size = [1.0, 5.0, 1.0]
+rotation = [0.0, 0.0, 0.0]
+
+[[brushes]]
+name = "SouthTower"
+material = "__GRAY"
+position = [5.0, 1.0, 5.0]
+size = [1.0, 5.0, 1.0]
+rotation = [0.0, 0.0, 0.0]

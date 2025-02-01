@@ -26,11 +26,11 @@ namespace Glow
             std::string author;
             std::string version;
             Vector3 dimesions;
-            std::vector<Brush> brushes;
+            std::vector<Brush*> brushes;
         public:
             MapLoader(const std::string& path);
         public:
-            std::vector<Brush> getBrushes() const;
+            std::vector<Brush*> getBrushes() const;
     };
 }
 
